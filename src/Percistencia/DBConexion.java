@@ -22,19 +22,20 @@ public class DBConexion {
                 
                 File archivo = new File(rutaArchivo);
                 FileReader lector = new FileReader(archivo);
-                BufferedReader buffer = new BufferedReader(lector);
-
-                String url = buffer.readLine();
-                String user = buffer.readLine();
-                String pass = buffer.readLine();
-
-                buffer.close();
+                String url;
+                String user;
+                String pass;
+                try (BufferedReader buffer = new BufferedReader(lector)) {
+                    url = buffer.readLine();
+                    user = buffer.readLine();
+                    pass = buffer.readLine();
+                }
                 conexion = DriverManager.getConnection(url, user, pass);
-                System.out.println("Conexión exitosa");
+                System.out.println("Conexion exitosa");
 
                 return conexion;
             } catch (IOException e) {
-                System.out.println("ERROR DE CONEXIÓN: " + e.getMessage());
+                System.out.println("ERROR DE CONEXION: " + e.getMessage());
                 return null;
             }
         }

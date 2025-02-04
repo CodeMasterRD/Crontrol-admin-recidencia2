@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controlador;
 
-import GUI.RetirarEstudiante;
-import GUI.VerEstudiantes;
 import Percistencia.DBConexion;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +17,7 @@ public class CocinaControlador {
     
     
     
-    private static DBConexion con1 = new DBConexion();  // Hacer con1 estática
+    private static final DBConexion con1 = new DBConexion();  // Hacer con1 estática
     private static Connection conet;
     private static Statement st;
     private static ResultSet rs;
@@ -36,7 +32,7 @@ public class CocinaControlador {
 
     try {
         //conexion a base de datos
-        conet = con1.getConexion();
+        conet = DBConexion.getConexion();
         st = conet.createStatement();
         rs = st.executeQuery(sql);
         
@@ -56,7 +52,7 @@ public class CocinaControlador {
         //mostrar error
     } catch (SQLException e) {
         System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-    } catch (Exception e) {
+    } catch (FileNotFoundException e) {
         System.err.println("Error general: " + e.getMessage());
     } finally {
         try {

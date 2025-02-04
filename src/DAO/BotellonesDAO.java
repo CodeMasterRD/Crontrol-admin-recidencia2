@@ -2,7 +2,6 @@ package DAO;
 
 import Percistencia.DBConexion;
 import VentanasEmegentes.IngresarBotellonesConfirmar;
-import java.awt.Component;
 import java.io.FileNotFoundException;
 import javax.swing.*;
 import java.sql.*;

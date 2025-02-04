@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controlador;
 
-import GUI.RetirarEstudiante;
-import GUI.VerEstudiantes;
+
 import Percistencia.DBConexion;
 import com.mysql.cj.jdbc.CallableStatement;
 import java.io.FileNotFoundException;
@@ -14,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,14 +20,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EstudianteControlador {
     
-    private static DBConexion con1 = new DBConexion();  // Hacer con1 estática
+    private static final DBConexion con1 = new DBConexion();  // Hacer con1 estática
     private static Connection conet;
-    DefaultTableModel modelo;
+   // DefaultTableModel modelo;
     private static Statement st;
     private static ResultSet rs;
-    int idc;
-    private static VerEstudiantes vista;
-    private RetirarEstudiante vista1;
+    // int idc;
+   // private static VerEstudiantes vista;
+   // private RetirarEstudiante vista1;
     
     
     
@@ -42,7 +36,7 @@ public class EstudianteControlador {
         String sql = "call ObtenerEstudiantesActivos();";
 
     try {
-        conet = con1.getConexion();
+        conet = DBConexion.getConexion();
         st = conet.createStatement();
         rs = st.executeQuery(sql);
         
@@ -63,7 +57,7 @@ public class EstudianteControlador {
         }
     } catch (SQLException e) {
         System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-    } catch (Exception e) {
+    } catch (FileNotFoundException e) {
         System.err.println("Error general: " + e.getMessage());
     } finally {
         try {
@@ -84,7 +78,7 @@ public class EstudianteControlador {
         String sql = "call ObtenerEstudiantesActivos();";
 
         try {
-            conet = con1.getConexion();
+            conet = DBConexion.getConexion();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
 
@@ -105,7 +99,7 @@ public class EstudianteControlador {
             }
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Error general: " + e.getMessage());
         } finally {
             try {
@@ -124,7 +118,7 @@ public class EstudianteControlador {
         String sql = "call obtenerEstudianteActualizar();";
 
         try {
-            conet = con1.getConexion();
+            conet = DBConexion.getConexion();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
 
@@ -144,7 +138,7 @@ public class EstudianteControlador {
             }
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Error general: " + e.getMessage());
         } finally {
             try {

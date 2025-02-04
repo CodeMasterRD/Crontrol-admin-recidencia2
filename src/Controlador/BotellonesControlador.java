@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controlador;
 
 import GUI.RetirarEstudiante;
@@ -21,9 +18,8 @@ public class BotellonesControlador {
     
     
     
-    private static DBConexion con1 = new DBConexion();
+    private static final DBConexion con1 = new DBConexion();
     private static Connection conet;
-    DefaultTableModel modelo;
     private static Statement st;
     private static ResultSet rs;
     
@@ -73,7 +69,7 @@ public class BotellonesControlador {
 
     try {
         //conexion a base de datps
-        conet = con1.getConexion();
+        conet = DBConexion.getConexion();
         st = conet.createStatement();
         rs = st.executeQuery(sql);
         
@@ -94,7 +90,7 @@ public class BotellonesControlador {
         }
     } catch (SQLException e) {
         System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-    } catch (Exception e) {
+    } catch (FileNotFoundException e) {
         System.err.println("Error general: " + e.getMessage());
     } finally {
         try {
@@ -114,7 +110,7 @@ public class BotellonesControlador {
         String sql = "call notificacionBotellones();";
 
     try {
-        conet = con1.getConexion();
+        conet = DBConexion.getConexion();
         st = conet.createStatement();
         rs = st.executeQuery(sql);
         
@@ -133,7 +129,7 @@ public class BotellonesControlador {
         }
     } catch (SQLException e) {
         System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-    } catch (Exception e) {
+    } catch (FileNotFoundException e) {
         System.err.println("Error general: " + e.getMessage());
     } finally {
         try {

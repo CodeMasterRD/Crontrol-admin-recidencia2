@@ -28,21 +28,13 @@ public class EstudiantesDAO {
     
     
     
-    private static DBConexion con1 = new DBConexion();
-    private static Connection conet;
-    DefaultTableModel modelo;
-    private static Statement st;
-    private static ResultSet rs;
-    int idc;
-    private static VerEstudiantes vista;
-    private RetirarEstudiante vista1;
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     
     
         public void RetirarMatricula(int matricula) throws FileNotFoundException {
         String sql = "CALL EliminarEstudiante(?);";
 
-        try (Connection conet = con1.getConexion();
+        try (Connection conet = DBConexion.getConexion();
              PreparedStatement ps = conet.prepareStatement(sql)) {
 
             // establecer el parámetro del procedimiento
