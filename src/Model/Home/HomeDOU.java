@@ -1,5 +1,5 @@
 
-package Model.RegistroMatricula;
+package Model.Home;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import Model.ConexionDB;
@@ -64,7 +64,7 @@ public class HomeDOU {
             // Manejar errores SQL personalizados
             if ("45000".equals(e.getSQLState())) {
                 System.err.println("Error personalizado: " + e.getMessage());
-//                JOptionPane.showMessageDialog(null, e.getMessage(), "Arvertencia", JOptionPane.INFORMATION_MESSAGE);
+                // JOptionPane.showMessageDialog(null, e.getMessage(), "Arvertencia", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.err.println("Error SQL: " + e.getMessage());
             }

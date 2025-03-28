@@ -1,10 +1,8 @@
 
 package recidencia_contro;
 
-import Model.ConexionDB;
 import View.HomeStudentGUI;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import Controler.HomeCTRL.HomeCTRL;
 
@@ -13,8 +11,8 @@ public class Recidencia_contro {
 
    
     public static void main(String[] args) throws SQLException, FileNotFoundException{
-        ConexionDB conexionDB = new ConexionDB();
-        Connection conexion = ConexionDB.getConexion();
+//        ConexionDB conexionDB = new ConexionDB();
+//        Connection conexion = ConexionDB.getConexion();
         
         //DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
                 
@@ -31,9 +29,7 @@ public class Recidencia_contro {
         
         home.setVisible(true);
        
-      
-        
-        
+
     }
     
 }

@@ -6,7 +6,7 @@ package Controler.HomeCTRL;
 import Controler.MenuCTRL.MenuCTRL;
 import Model.MenuDOU.MenuDOU;
 import View.HomeStudentGUI;
-import Model.RegistroMatricula.HomeDOU;
+import Model.Home.HomeDOU;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;

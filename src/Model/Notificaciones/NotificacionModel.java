@@ -1,8 +1,6 @@
 
 package Model.Notificaciones;
 
-import Model.Notificaciones.NotificacionesDOU;
-
 
 public class NotificacionModel {
     

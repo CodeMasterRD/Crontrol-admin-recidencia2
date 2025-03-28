@@ -4,7 +4,7 @@ import java.sql.*;
 import Model.ConexionDB;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import Model.RegistroMatricula.HomeDOU;
+import Model.Home.HomeDOU;
 import com.mysql.cj.jdbc.CallableStatement;
 import Model.EstudianteModel.EstudianteModel;
 import Model.Notificaciones.NotificacionesDOU;
@@ -145,7 +145,7 @@ public class MenuDOU {
        
       public static boolean SolicitarBotellon() throws FileNotFoundException{
         System.out.println("Soolicitando botellon");
-        String SQL_REGISTRARENTRADA = "{CALL solicitarBotellones(?)}";
+        String SQL_REGISTRARENTRADA = "{CALL solicitarBotellones2(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
              
@@ -179,7 +179,7 @@ public class MenuDOU {
       
       
       
-       public static boolean DepositarBotellon() throws FileNotFoundException{
+    public static boolean DepositarBotellon() throws FileNotFoundException{
         //System.out.println("Depocitando Botellon");
         String SQL_REGISTRARENTRADA = "{CALL SolicitarDepositoBotellones(?)}";
         try(Connection conexion = ConexionDB.getConexion();

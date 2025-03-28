@@ -6,7 +6,7 @@ import Controler.HomeCTRL.HomeCTRL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.MenuDOU.MenuDOU;
-import Model.RegistroMatricula.HomeDOU;
+import Model.Home.HomeDOU;
 import View.MenuGUI;
 import java.io.FileNotFoundException;
 import View.HomeStudentGUI;
@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 import Model.EstudianteModel.EstudianteModel;
 import Model.Notificaciones.NotificacionesDOU;
 import Model.Notificaciones.NotificacionModel;
-import Model.Asignacionbotellon.AsignacionBotellonModel;
-import Model.Asignacionbotellon.AsingnacionBotellonDOU;
+import Model.Habitacion.HabitacionDOU;
+import  Model.Habitacion.HabitacionModel;
 
 
 
@@ -45,8 +45,9 @@ public class MenuCTRL implements ActionListener{
         // Establecemos el estado inicial de los botones según el estado del estudiante
         
         
-        AsingnacionBotellonDOU.getEstadoBotellon();
+//        AsingnacionBotellonDOU.getEstadoBotellon();
         NotificacionesDOU.getEstadoNotificacio();
+        HabitacionDOU.getEstadoBotellonHabitacion();
         actualizarEstadoBotones();
         
         m.jbNombre.setText(EstudianteModel.getNombre() +" "+ EstudianteModel.getApellido());
@@ -55,143 +56,52 @@ public class MenuCTRL implements ActionListener{
         
     }
     
-//     // Método que actualiza la visibilidad y el texto de los botones según el estado del estudiante
-//    private void actualizarEstadoBotones() throws FileNotFoundException {
-//        
-//        String estadoEstidiante = EstudianteModel.getEstado();
-//        String estadoNotificacion = NotificacionModel.getEstado_notificaciones();
-//        String tipoNotificacion = NotificacionModel.getTipo_noteficacion();
-//        String estadoBotellon = AsignacionBotellonModel.getEstadoBotellon();
-//        
-//        System.out.println("Estado En actualizar  " + estadoEstidiante );
-//        System.out.println("Notificacion En actualizar " + estadoNotificacion);
-//        System.out.println("Estado botellon " + estadoBotellon);
-//        System.out.println("Tipo notificacion " + tipoNotificacion);
-//        
-//        if ("En cocina".equals(estadoEstidiante) ) {
-//            this.menuGUI.btnEntradaSalida.setVisible(false); // Ocultar entrada/salida mientras está en cocina
-//            // Mostrar solo el botón para finalizar 
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(true);
-//            this.menuGUI.btnSolicitarBotellon.setVisible(false);
-//            this.menuGUI.btnDepositarbotellon.setVisible(false);
-//        }
-//        //&& "en uso".equals(estadoBotellon) ) || (("Dentro".equals(estadoEstidiante) && "depositado".equals(estadoBotellon)) )
-//        else if ("en uso".equals(estadoBotellon) && "Dentro".equals(estadoEstidiante)) {
-//
-//            this.menuGUI.btnEntradaSalida.setVisible(true);
-//            this.menuGUI.btnEntradaSalida.setText("Registrar salida");
-//
-//            // Mostrar botones de cocina y botellón solo si está dentro
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(true);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-//            this.menuGUI.btnSolicitarBotellon.setVisible(false);
-//            this.menuGUI.btnDepositarbotellon.setVisible(true);
-//        } if ("Dentro".equals(estadoEstidiante) && "Pendiente".equals(estadoNotificacion)) {
-//            System.out.println("Estado En actualizar " + EstudianteModel.getEstado() );
-//            this.menuGUI.btnEntradaSalida.setVisible(true);
-//            this.menuGUI.btnEntradaSalida.setText("Registrar salida");
-//
-//            // Mostrar botones de cocina y botellón solo si está dentro
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(true);
-//            
-//            this.menuGUI.btnSolicitarBotellon.setVisible(false);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);   
-//            this.menuGUI.btnSolicitarBotellon.setText("En espara de confirmacion");
-//            this.menuGUI.btnDepositarbotellon.setVisible(false);
-//            
-//            
-//        }
-//        
-//        else if ("Dentro".equals(estadoEstidiante) && "Solicitar botellon".equals(tipoNotificacion)) {
-//
-//            this.menuGUI.btnEntradaSalida.setVisible(true);
-//            this.menuGUI.btnEntradaSalida.setText("Registrar salida");
-//            // Mostrar botones de cocina y botellón solo si está dentro
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(true);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-//            this.menuGUI.btnSolicitarBotellon.setVisible(true);
-//            this.menuGUI.btnSolicitarBotellon.setText("En espera de confirmacion botellon");
-//            this.menuGUI.btnDepositarbotellon.setVisible(false);
-//        } else if ("Depositar botellon".equals(tipoNotificacion) && "Dentro".equals(estadoEstidiante) ) {
-//
-//            this.menuGUI.btnEntradaSalida.setVisible(true);
-//            this.menuGUI.btnEntradaSalida.setText("Registrar salida");
-//
-//            // Mostrar botones de cocina y botellón solo si está dentro
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(true);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-//            this.menuGUI.btnSolicitarBotellon.setVisible(true);
-//            this.menuGUI.btnSolicitarBotellon.setText("En espera de confirmacion");
-//            this.menuGUI.btnDepositarbotellon.setVisible(false);
-//        } 
-//        
-//        else if ("Fuera".equals(estadoEstidiante) ) {
-//            
-//            this.menuGUI.btnEntradaSalida.setVisible(true);
-//            this.menuGUI.btnEntradaSalida.setText("Registrar entrada");
-//
-//            // Ocultar botones de cocina y botellón si está fuera
-//            this.menuGUI.btnSolicitarBotellon.setVisible(false);
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-//            this.menuGUI.btnDepositarbotellon.setVisible(false);
-//            
-//        }else if ("Dentro".equals(estadoEstidiante)) {
-//
-//            this.menuGUI.btnEntradaSalida.setVisible(true);
-//            this.menuGUI.btnEntradaSalida.setText("Registrar salida");
-//
-//            // Mostrar botones de cocina y botellón solo si está dentro
-//            this.menuGUI.btnRegistrarUsoCocina.setVisible(true);
-//            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-//            this.menuGUI.btnSolicitarBotellon.setVisible(true);
-//            this.menuGUI.btnDepositarbotellon.setVisible(false);
-//        }  
-//        else{
-//            System.out.println("no entro a ningun btn");
-//        }
-////        else if ("Pendiente".equals(NotificacionesDOU.getEstado_notificaciones())){
-////            this.menuGUI.btnEntradaSalida.setVisible(false); // Ocultar entrada/salida mientras está en cocina
-////            // Mostrar solo el botón para finalizar 
-////            this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
-////            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-////            this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(false);
-////            
-////        }
-//    }
-    
+
+    // metodo que cambia los botones segun los estado 
     private void actualizarEstadoBotones() throws FileNotFoundException {
         
     String estadoEstudiante = EstudianteModel.getEstado();
     String  estadoNotificacion = NotificacionModel.getEstado_notificaciones();
     String  tipoNotificacion = NotificacionModel.getTipo_noteficacion();
-    String estadoBotellon = AsignacionBotellonModel.getEstadoBotellon();
-
+//    String estadoBotellon = AsignacionBotellonModel.getEstadoBotellon();
+    String estadoBotellon_h = HabitacionModel.getEstado_botellon_h();
     System.out.println("Estado estudiante: " + estadoEstudiante);
-    System.out.println("Estado notificación: " + estadoNotificacion );
-    System.out.println("Tipo notificación: " + tipoNotificacion);
-    System.out.println("Estado botellón: " + estadoBotellon);
+    System.out.println("Estado notificacio: " + tipoNotificacion );
+    
+//    System.out.println("Estado botellón: " + estadoBotellon);
+        
 
     switch (estadoEstudiante) {
-        case "Fuera":
+        case "Fuera":// si esta fuera solamente puede realizar la entrada
             configurarBotones(true, false, false, false, false, "Registrar entrada", "");
             break;
 
         case "Dentro":
-             if ("Pendiente".equals(estadoNotificacion) && "Depositar botellon".equals(tipoNotificacion)) {
-                configurarBotones(true, true, false, true, false, "Solicitar salida", "Confimando botellon vacio");
-            }else if ("en uso".equals(estadoBotellon)) {
+            // si tiene una tiene una solicitu pendiente y una notificacion de Solicitar botellon
+            if ("en espera".equals( estadoBotellon_h) && "Solicitar botellon".equals(tipoNotificacion) ) {
+                configurarBotones(true, true, false, true, false, "Solicitar salida", "En espera de agua");
+            } else if ("con botellon".equals(estadoBotellon_h) ){
                 configurarBotones(true, true, false, false, true, "Solicitar salida", "");
+                System.out.println("entro en el 1");
+            }
+            else if ("en espera".equals(estadoBotellon_h)) {
+                configurarBotones(true, true, false, true, false, "Solicitar salida", "hay una solicitud pendiente");
+                System.out.println("entro en el 2");
             } 
-            else if ("Aceptada".equals(estadoNotificacion) && "Depositar botellon".equals(tipoNotificacion)) {
-                configurarBotones(true, true, false, true, false, "Solicitar salida", "Solicitar botellon");
-            }else if ("Pendiente".equals(estadoNotificacion)) {
-                configurarBotones(true, true, false, true, false, "Solicitar salida", "En espera de un botellón");
+            
+    
+            else if ("en espera".equals(estadoBotellon_h) && "Depositar botellon".equals(tipoNotificacion) ) {
+                System.out.println("entro en el 3");
+                configurarBotones(true, true, false, true, false, "Solicitar salida", "Entrega el botello vacio");
             }
-            else {
+            else if ("con botellon".equals(estadoBotellon_h)) {
+                configurarBotones(true, true, false, false, true, "Solicitar salida", "");
+                System.out.println("entro en el 4");
+            }else {
                 configurarBotones(true, true, false, true, false, "Solicitar salida", "Solicitar botellon");
+                System.out.println("entro en el 5");
             }
+
             break;
 
         case "En cocina":
@@ -305,8 +215,10 @@ private void handleSolicitarBotellonAction() throws FileNotFoundException {
             menuGUI.dispose();
             hsgui.setVisible(true);
         }
-    } else if ("En espera de un botellón".equals(buttonText)) {
+    } else if ("En espera de confirmación".equals(buttonText)) {
         JOptionPane.showMessageDialog(menuGUI, "Solicitud en espera. Por favor, espere confirmación.");
+    }else if ("Deposite el botellon vacio".equals(buttonText)) {
+        JOptionPane.showMessageDialog(menuGUI, "Solicitud en espera. Por favor, Deposite el botellon vacio");
     }
 }
 
@@ -322,8 +234,8 @@ private void handleDepositarBotellonAction() throws FileNotFoundException {
         menuGUI.dispose();
         hsgui.setVisible(true);
     }
-    else if ("Confimando botellon vacio".equals(buttonText)) {
-        JOptionPane.showMessageDialog(menuGUI, "Solicitud en espera. Por favor, espere confirmación.");
+    else if ("Deposite el botellon vacio".equals(buttonText)) {
+        JOptionPane.showMessageDialog(menuGUI, "Solicitud en espera. Por favor, deposite el botellon");
     }
 }
 
