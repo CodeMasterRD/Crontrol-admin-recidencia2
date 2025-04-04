@@ -30,6 +30,7 @@ public class IngresarBotellonesConfirmar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
         jPanel1.setToolTipText("");
